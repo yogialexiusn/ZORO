@@ -1,0 +1,211 @@
+<!-- <img src="./assets/succescase.jpg">
+<button nz-button (click)="createMessage('warning')">Warning</button>
+<ng-template #template>
+    <div class="ant-notification-notice-content">
+        <div class="ant-notification-notice-with-icon">
+            <span class="ant-notification-notice-icon">
+            <i nz-icon nzType="smile" style="color: rgb(16, 142, 233);"></i>
+            <img src="./assets/succescase.jpg">
+            </span>
+            <div class="ant-notification-notice-message">Notification Title</div>
+            <div class="ant-notification-notice-description">
+                This is the content of the notification. This is the content of the notification. This is the content of the notification.
+            </div>
+        </div>
+    </div>
+</ng-template>
+<button nz-button [nzType]="'primary'" (click)="createBasicNotification(template)">
+    Open the notification box
+</button> -->
+<section class="dampingan ">
+
+    <nz-card style="width:50%" [class.active]="selectedIndex === 0" (click)="selectedIndex = 0">
+        <h3>Search by:</h3>
+        <h4>Name</h4>
+        <input nz-input placeholder="Input Name" [(ngModel)]="shipper_name" />
+        <br />
+        <h4>AWB</h4>
+        <input nz-input placeholder="Input AWB" [(ngModel)]="awb" />
+        <br />
+        <h4>Area</h4>
+        <input nz-input placeholder="Input Area" [(ngModel)]="city" />
+        <br />
+        <h4>Client Name</h4>
+        <input nz-input placeholder="Input Client Name" [(ngModel)]="client_name" />
+        <br />
+        <h4>RPU Date</h4>
+        <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+        <br />
+        <h4>Remark</h4>
+        <nz-select [(ngModel)]="selectedRemark" nzPlaceHolder="Select remarks">
+            <nz-option-group nzLabel="Remark Umum">
+                <nz-option nzValue="3" nzLabel="Nomor telp kosong atau tidak sesuai dengan standar yang berlaku sehingga tidak mungkin dapat dihubungi"></nz-option>
+                <nz-option nzValue="5" nzLabel="Pelanggan belum dapat dihubungi"></nz-option>
+                <nz-option nzValue="17" nzLabel="Pickup ditunda karena cuaca (hujan deras / banjir / bencana lainnya"></nz-option>
+                <nz-option nzValue="18" nzLabel="Alasan lalu lintas, penundaan penerimaan dan pengiriman"></nz-option>
+                <nz-option nzValue="20" nzLabel="Mencetak ulang label AWB"></nz-option>
+                <nz-option nzValue="31" nzLabel="AWB habis"></nz-option>
+                <nz-option nzValue="32" nzLabel="Tasklist terlambat masuk"></nz-option>
+                <nz-option nzValue="34" nzLabel="Menunggu antrian di tempat shipper"></nz-option>
+                <nz-option nzValue="74" nzLabel="Overload"></nz-option>
+            </nz-option-group>
+            <nz-option-group nzLabel="Cancel">
+                <nz-option nzValue="33" nzLabel="Tidak memenuhi syarat dan ketentuan yang berlaku (barang berbahaya, makhluk hidup, narkoba, kemasan rusak, dll"></nz-option>
+                <nz-option nzValue="36" nzLabel="Pickup dibatalkan karena perubahan berat melebihi batas yang sudah ditentukan"></nz-option>
+                <nz-option nzValue="46" nzLabel="Pelanggan meminta pembatalan pickup paket"></nz-option>
+                <nz-option nzValue="47" nzLabel="Pemesanan berulang (double order)"></nz-option>
+                <nz-option nzValue="48" nzLabel="Dibatalkan karena pelanggan menolak menanggung perbedaan berat/biaya"></nz-option>
+            </nz-option-group>
+            <nz-option-group nzLabel="Reschedule">
+                <nz-option nzValue="701" nzLabel="Reschedule pickup karena toko/kantor tutup"></nz-option>
+                <nz-option nzValue="702" nzLabel="Reschedule karena parcel belum siap di-pickup"></nz-option>
+                <nz-option nzValue="703" nzLabel="Reschedule pickup karena shipper tidak dapat dihubungi"></nz-option>
+            </nz-option-group>
+            <nz-option-group nzLabel="ARSS">
+                <nz-option nzValue="53" nzLabel="Unit zone salah"></nz-option>
+            </nz-option-group>
+        </nz-select>
+        <br />
+        <br />
+        <button class="right" nz-button nzType="primary" (click)="searchbyForm()">Search AWB</button>
+    </nz-card>
+
+    <div style=" padding: 10px 10px "></div>
+    <div style=" padding: 10px 10px "></div>
+
+    <nz-card style="width:50%">
+        <h3>Search by Upload List of AWB</h3>
+        <p>1. Download the template by clicking the button below.</p>
+        <button nz-button nzType="primary">Download Excel Template</button><br /> <br />
+        <p>2. Fill in the template with the list of AWB, and save it with .xls format.<br /> <br /> </p>
+        <p>3. Upload the template in the box below and click search. <br /></p>
+
+        <form id="file-upload-form" class="uploader">
+            <input id="file-upload" type="file" (change)="fileUpload($event)" name="fileUpload" accept=".xls, .xlsx" />
+            <label for="file-upload" id="file-drag">
+            </label>
+        </form>
+        <br />
+        <br />
+        <button class="right" nz-button nzType="primary" (click)="searchbyExcel(dataExcell)" [disabled]="disabledExcell">Search AWB</button>
+    </nz-card>
+</section>
+
+<!-- <section class="dampingan">
+    <div style="width:80%">
+        <nz-radio-group [(ngModel)]="radioChoose" nzName="radiogroups">
+            <label nz-radio nzValue="A">A</label>
+        </nz-radio-group>
+    </div>
+
+    <div style="width:80%">
+        <nz-radio-group [(ngModel)]="radioChoose" nzName="radiogroups">
+            <label nz-radio nzValue="B">B</label>
+        </nz-radio-group>
+    </div>
+</section> -->
+
+<nz-card>
+    <div class="send-request">
+        <b>Search by: </b>
+        <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" [(ngModel)]="listOfTagOptions">
+            <nz-option *ngFor="let option of listOfOption" [nzValue]="option.value">{{ option}}</nz-option>
+        </nz-select>
+    </div>
+
+
+
+
+    <span class="send-request">
+        <b>List of AWB</b></span>
+    <span class="right">
+        AWB Selected : {{ setOfCheckedId.size }}  &nbsp;&nbsp;
+        <button nz-button [nzType]="'primary'" (click)="showModalAll()"><span>Add Remarks</span></button>
+    <nz-modal nzWidth=50% [(nzVisible)]="isVisible" nzTitle="Add Remarks" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <ng-container *nzModalContent>
+            <p>Select remarks for these <b>{{ setOfCheckedId.size }}</b> AWB</p>
+            <p><i>Remark Umum</i></p>
+            <nz-radio-group [(ngModel)]="radioValue">
+                <label nz-radio [nzValue]="5">Pelanggan belum dapat dihubungi</label>
+                <label nz-radio [nzValue]="17">Pickup ditunda karena cuaca (hujan deras / banjir / bencana lainnya</label>
+                <label nz-radio [nzValue]="18">Alasan lalu lintas, penundaan penerimaan dan pengiriman</label>
+                <label nz-radio [nzValue]="20">Mencetak ulang label AWB</label>
+                <label nz-radio [nzValue]="31">AWB habis</label>
+                <label nz-radio [nzValue]="32">Tasklist terlambat masuk</label>
+                <label nz-radio [nzValue]="34">Menunggu antrian di tempat shipper</label>
+                <label nz-radio [nzValue]="74">Overload</label>
+                <br />
+            </nz-radio-group>
+            <p><i>Cancel</i></p>
+            <nz-radio-group [(ngModel)]="radioValue">
+                <label nz-radio [nzValue]="33">Tidak memenuhi syarat dan ketentuan yang berlaku (barang berbahaya, makhluk hidup, narkoba, kemasan rusak, dll</label>
+                <label nz-radio [nzValue]="36">Pickup dibatalkan karena perubahan berat melebihi batas yang sudah ditentukan</label>
+                <label nz-radio [nzValue]="46">Pelanggan meminta pembatalan pickup paket</label>
+                <label nz-radio [nzValue]="47">Pemesanan berulang (double order)</label>
+                <label nz-radio [nzValue]="48">Dibatalkan karena pelanggan menolak menanggung perbedaan berat/biaya</label>
+                <br />
+            </nz-radio-group>
+            <p><i>Reschedule</i></p>
+            <nz-radio-group [(ngModel)]="radioValue">
+                <label nz-radio nzValue="701">
+                    Reschedule pickup karena toko/kantor tutup
+                    <nz-date-picker class="schedule" type="text" nz-input *ngIf="radioValue === '701'" [(ngModel)]="scheduleTime" (ngModelChange)="onSchedule($event)"></nz-date-picker>
+                </label>
+                <label nz-radio nzValue="702">
+                    Reschedule karena parcel belum siap di-pickup
+                    <nz-date-picker class="schedule" type="text" nz-input *ngIf="radioValue === '702'" [(ngModel)]="scheduleTime" (ngModelChange)="onSchedule($event)"></nz-date-picker>
+                </label>
+                <label nz-radio nzValue="703">
+                    Reschedule pickup karena shipper tidak dapat dihubungi
+                    <nz-date-picker class="schedule" type="text" nz-input *ngIf="radioValue === '703'" [(ngModel)]="scheduleTime" (ngModelChange)="onSchedule($event)"></nz-date-picker>
+                </label>
+                <br />
+            </nz-radio-group>
+            <p><i>ARSS</i></p>
+            <nz-radio-group [(ngModel)]="radioValue">
+                <label nz-radio [nzValue]="53">Unit zone salah</label>
+            </nz-radio-group>
+
+        </ng-container>
+    </nz-modal>
+    </span>
+
+
+    <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+        <thead>
+            <tr>
+                <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+                <th>Booking ID</th>
+                <th>AWB</th>
+                <th>Client Code</th>
+                <th>Shipper Name</th>
+                <th>Area</th>
+                <th>RPU Date</th>
+                <th>Remark</th>
+                <th>Changed Remark</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let list of listOfData">
+                <td [nzChecked]="setOfCheckedId.has(list.booking_id)" [nzDisabled]="list.disabled" (nzCheckedChange)="onItemChecked(list.booking_id, $event)"></td>
+                <td>{{ list.booking_id }}</td>
+                <td>{{ list.awb }}</td>
+                <td>{{ list.client_code }}</td>
+                <td>{{ list.shipper_name }}</td>
+                <td>{{ list.city }}</td>
+                <td>{{ list.rpu_date }}</td>
+                <td>{{ list.why_code_remarks }}</td>
+                <td>{{ list.exceptionCode }}</td>
+                <!-- <td><button nz-button [disabled]="list.disabled" (click)="showModal(list.booking_id)">Add Remarks</button></td> -->
+                <td><button nz-button [disabled]="list.disabled" (click)="validasiAddRemark(list.booking_id)">Add Remarks</button></td>
+                <!-- <td *ngIf="data.disabled==true ">
+                    <button nz-button [nzType]="'primary'" disabled (click)="showModal()"><span>Add Remarks</span></button></td>
+                <ng-template [ngIf]="data.disabled==false">
+                    <td><button nz-button [nzType]="'primary'" (click)="showModal()"><span>Add Remarks</span></button></td>
+                </ng-template> -->
+            </tr>
+        </tbody>
+    </nz-table>
+    <button class="right" nz-button nzType="primary" (click)="showConfirm()">Submit Remarks</button>
+</nz-card>

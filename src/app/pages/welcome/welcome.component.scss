@@ -1,0 +1,56 @@
+.dampingan {
+    display: flex;
+    flex: 50%;
+    // padding-right: 10px;
+}
+
+nz-select {
+    width: 100%;
+}
+
+nz-range-picker {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+}
+
+.right {
+    float: right;
+}
+
+//table
+.send-request {
+    margin-bottom: 16px;
+}
+
+.send-request span {
+    margin-left: 8px;
+}
+
+//end tabel
+[nz-radio] {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+}
+
+.center {
+    border: 5px solid #FFFF00;
+    display: flex;
+    justify-content: center;
+}
+
+.wew {
+    width: 100%;
+}
+
+nz-radio {
+    width: 200px;
+}
+
+.schedule {
+    width: 150px;
+    margin-left: 40px;
+}
